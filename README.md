@@ -16,17 +16,19 @@ Arrrr!
     ```
 
     Gotcha #1
+    
     Edit /usr/local/Library/Formula/r.rb add build arg '--enable-R-shlib'
-    - http://rforge.net/Rserve/doc.html
+    (http://rforge.net/Rserve/doc.html)
 
     ```shell
     brew install r
     brew install gettext
     ```
 
+
     Gotcha #2
     ```shell
-    brew link gettext --force (Gotcha #2)
+    brew link gettext --force
     ```
 
   1. Install packages by running commands
