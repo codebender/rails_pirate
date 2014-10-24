@@ -8,9 +8,13 @@ class PredictionsController < ApplicationController
     @prediction = Prediction.new(params[:prediction].permit(:user_id, :date))
 
     if @prediction.save
-      render :index, notice: 'Prediction Request Created!'
+      redirect_to predictions_path, notice: 'Prediction Request Created!'
     else
       render :new
     end
+  end
+
+  def index
+    @predictions = Prediction.all
   end
 end

@@ -21,6 +21,20 @@ feature 'Predition analysis' do
       to_not be_nil
   end
 
+  scenario 'User can view list of requested predictions' do
+    Prediction.create(user_id: 123, date: Date.tomorrow)
+    Prediction.create(user_id: 456, date: Date.today)
+
+    visit predictions_path
+
+    expect(page).to have_content('User ID')
+    expect(page).to have_content('Date')
+    expect(page).to have_content('123')
+    expect(page).to have_content('456')
+    expect(page).to have_content(Date.tomorrow.to_s)
+    expect(page).to have_content(Date.today.to_s)
+  end
+
   def select_date(date, options = {})
     field = options[:from]
     select date.year.to_s, from: "#{field}_1i"
