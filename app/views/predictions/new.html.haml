@@ -1,0 +1,14 @@
+.page-header
+  %h1
+    Predicitons with R
+
+= form_for @prediction do |f|
+  .form-group
+    = f.label :user_id, 'Who?'
+    = f.select :user_id, @users.collect { |u| [ u.username, u.id ] },
+      prompt: 'Select User'
+  .form-group
+    = f.label :date, 'When?'
+    = f.date_select :date, order: [:month, :day, :year],
+      default: Date.today, start_year: Date.today.year
+  = f.submit 'Create Prediciton', class: 'btn btn-primary'

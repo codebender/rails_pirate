@@ -1,0 +1,18 @@
+!!!
+%html{ 'ng-app' => 'app'}
+  %head
+    %title Ruby on Rails talks to R
+    = stylesheet_link_tag "application", media: "all"
+    = csrf_meta_tags
+  %body
+    %header
+      %h1
+        Ruby on Rails talks to R
+    .container
+      = yield
+    %footer.footer
+      .container
+        %p
+          © 2014
+          = link_to 'Bent Solutions, LLC', 'http://www.bentsolutions.com'
+          All rights reserved.
