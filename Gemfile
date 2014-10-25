@@ -11,6 +11,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
   gem 'capybara'
   gem 'shoulda-matchers'
+  gem 'codeclimate-test-reporter'
 end
 
 group :development do

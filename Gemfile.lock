@@ -35,9 +35,12 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    codeclimate-test-reporter (0.4.1)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     daemons (1.1.9)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     erubis (2.7.0)
     eventmachine (1.0.3)
     haml (4.0.5)
@@ -101,6 +104,11 @@ GEM
     rspec-support (3.1.2)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
+    simplecov (0.9.1)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     slop (3.6.0)
     sprockets (2.12.2)
       hike (~> 1.2)
@@ -131,6 +139,7 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  codeclimate-test-reporter
   haml
   pg
   pry-rails
