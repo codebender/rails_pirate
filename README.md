@@ -7,6 +7,12 @@ Rails Pirate
 
 Arrrr!
 
+Code Status
+------------
+[![Build Status](https://semaphoreapp.com/api/v1/projects/059e4052-6e33-4d90-8d1e-5affd067c422/275185/badge.png)](https://semaphoreapp.com/codebender/rails_pirate)
+[![Code Climate](https://codeclimate.com/github/codebender/rails_pirate/badges/gpa.svg)](https://codeclimate.com/github/codebender/rails_pirate)
+[![Test Coverage](https://codeclimate.com/github/codebender/rails_pirate/badges/coverage.svg)](https://codeclimate.com/github/codebender/rails_pirate)
+
 
 ## Install
   1. brew install dependencies
@@ -16,7 +22,7 @@ Arrrr!
     ```
 
     Gotcha #1
-    
+
     Edit /usr/local/Library/Formula/r.rb add build arg '--enable-R-shlib'
     (http://rforge.net/Rserve/doc.html)
 
