@@ -12,6 +12,7 @@ group :development, :test do
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'codeclimate-test-reporter'
+  gem 'awesome_print'
 end
 
 group :development do
