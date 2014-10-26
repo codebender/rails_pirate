@@ -48,6 +48,7 @@ describe Prediction do
          '2014-10-27 0:00', '2014-10-27 1:00', '2014-10-27 2:00',
          '2014-10-27 3:00', '2014-10-27 4:00', '2014-10-27 5:00'],
         [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]])
+
       prediction.process
 
       expect(PredictionDatum.where(prediction_id: prediction.id).size).to eq 24
