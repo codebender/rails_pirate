@@ -9,7 +9,7 @@ class Prediction < ActiveRecord::Base
       where('start_time > ?', 1.month.ago).to_a
 
     test_data = build_test_data
-    
+
     results = RPredictor.new(training_data, test_data).make_prediction
 
     save_results(results, test_data)
@@ -24,8 +24,10 @@ class Prediction < ActiveRecord::Base
       range = date.at_beginning_of_day.to_i...date.at_end_of_day.to_i
 
       range.step(1.hour) do |seconds_since_epoch|
-        test_data << PredictionDatum.new(start_time: Time.at(seconds_since_epoch),
-          user_id: user_id, prediction_id: id)
+        test_data << PredictionDatum.new(
+          start_time: Time.at(seconds_since_epoch),
+          user_id: user_id,
+          prediction_id: id)
       end
     end
 
