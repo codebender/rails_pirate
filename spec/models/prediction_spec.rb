@@ -4,6 +4,9 @@ describe Prediction do
   it { should validate_presence_of(:user_id) }
   it { should validate_presence_of(:date) }
 
+  it { should have_many(:prediction_data) }
+  it { should belong_to(:user) }
+
   describe 'process' do
     let(:prediction) { Prediction.new(user_id: 123, date: Date.tomorrow) }
 
