@@ -9,7 +9,9 @@ class RPredictor
   end
 
   def make_prediction
-    test_results = r_client.eval(r_script)
+    r_results = r_client.eval(r_script)
+
+    hashize_results(r_results)
   end
 
   private
@@ -43,5 +45,10 @@ EOF
     test_data.map do |datum|
       "'#{datum.start_time.strftime('%Y-%m-%d %H:%M')}'"
     end.join(',')
+  end
+
+  def hashize_results(r_results)
+    ruby_results = r_results.to_ruby
+    ruby_results[0].zip(ruby_results[1]).to_h
   end
 end

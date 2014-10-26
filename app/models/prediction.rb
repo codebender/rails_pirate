@@ -19,11 +19,9 @@ class Prediction < ActiveRecord::Base
     end
 
     predictor = RPredictor.new(training_data, test_data)
-    results = predictor.make_prediction.to_ruby
+    results = predictor.make_prediction
 
-    results_hash = results[0].zip(results[1]).to_h
-
-    results_hash.each do |result_time, result_value|
+    results.each do |result_time, result_value|
       test_data.find { |data| data.start_time == Time.zone.parse(result_time) }.
         value = result_value
     end

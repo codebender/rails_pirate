@@ -8,12 +8,25 @@ describe Prediction do
   it { should belong_to(:user) }
 
   describe 'process' do
-    let(:prediction) { Prediction.new(user_id: 123, date: Date.tomorrow) }
-    let(:prediciton_results) { double(Rserve::REXP::GenericVector) }
+    let(:prediction) { Prediction.new(user_id: 123,
+      date: Date.new(2014, 10, 26)) }
+    let(:prediciton_results) {
+      { '2014-10-26 6:00' => 1, '2014-10-26 7:00' => 2, '2014-10-26 8:00' => 3,
+       '2014-10-26 9:00' => 4, '2014-10-26 10:00' => 5, '2014-10-26 11:00' => 6,
+       '2014-10-26 12:00' => 7, '2014-10-26 13:00' => 8,
+       '2014-10-26 14:00' => 9, '2014-10-26 15:00' => 10,
+       '2014-10-26 16:00' => 11, '2014-10-26 17:00' => 12,
+       '2014-10-26 18:00' => 13, '2014-10-26 19:00' => 14,
+       '2014-10-26 20:00' => 15, '2014-10-26 21:00' => 16,
+       '2014-10-26 22:00' => 17, '2014-10-26 23:00' => 18,
+       '2014-10-27 0:00' => 19, '2014-10-27 1:00' => 20,
+       '2014-10-27 2:00' => 21, '2014-10-27 3:00' => 22,
+       '2014-10-27 4:00' => 23, '2014-10-27 5:00' => 24 }
+    }
 
     before(:each) do
-      allow_any_instance_of(RPredictor).to receive(:make_prediction).and_return(prediciton_results)
-      allow(prediciton_results).to receive(:to_ruby).and_return([[],[]])
+      allow_any_instance_of(RPredictor).to receive(:make_prediction).
+        and_return(prediciton_results)
     end
 
     it 'requests the last month of stat data' do
@@ -35,19 +48,7 @@ describe Prediction do
     end
 
     it 'saves the prediction data' do
-      prediction.date = Date.new(2014, 10, 26)
       prediction.save
-
-      expect(prediciton_results).to receive(:to_ruby).and_return([
-        ['2014-10-26 6:00', '2014-10-26 7:00', '2014-10-26 8:00',
-         '2014-10-26 9:00', '2014-10-26 10:00', '2014-10-26 11:00',
-         '2014-10-26 12:00', '2014-10-26 13:00', '2014-10-26 14:00',
-         '2014-10-26 15:00', '2014-10-26 16:00', '2014-10-26 17:00',
-         '2014-10-26 18:00', '2014-10-26 19:00', '2014-10-26 20:00',
-         '2014-10-26 21:00', '2014-10-26 22:00', '2014-10-26 23:00',
-         '2014-10-27 0:00', '2014-10-27 1:00', '2014-10-27 2:00',
-         '2014-10-27 3:00', '2014-10-27 4:00', '2014-10-27 5:00'],
-        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]])
 
       prediction.process
 

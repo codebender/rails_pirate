@@ -7,6 +7,8 @@ describe RPredictor do
       rserve = double(Rserve::Connection)
       allow(Rserve::Connection).to receive(:new).and_return(rserve)
       expect(rserve).to receive(:eval).with(instance.send(:r_script))
+      expect_any_instance_of(RPredictor).to receive(:hashize_results).
+        and_return({})
 
       instance.make_prediction
     end
