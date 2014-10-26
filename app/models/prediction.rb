@@ -7,6 +7,17 @@ class Prediction < ActiveRecord::Base
   def process
     training_data = StatDatum.where(user_id: user_id).
       where('start_time > ?', 1.month.ago).to_a
+
+    test_data = build_test_data
+    
+    results = RPredictor.new(training_data, test_data).make_prediction
+
+    save_results(results, test_data)
+  end
+
+  private
+
+  def build_test_data
     test_data = []
 
     Time.use_zone('Mountain Time (US & Canada)') do
@@ -18,12 +29,8 @@ class Prediction < ActiveRecord::Base
       end
     end
 
-    results = RPredictor.new(training_data, test_data).make_prediction
-
-    save_results(results, test_data)
+    test_data
   end
-
-  private
 
   def save_results(results, test_data)
     results.each do |result_time, result_value|
