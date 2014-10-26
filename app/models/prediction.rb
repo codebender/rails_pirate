@@ -18,8 +18,7 @@ class Prediction < ActiveRecord::Base
       end
     end
 
-    predictor = RPredictor.new(training_data, test_data)
-    results = predictor.make_prediction
+    results = RPredictor.new(training_data, test_data).make_prediction
 
     save_results(results, test_data)
   end
