@@ -8,9 +8,24 @@ class Prediction < ActiveRecord::Base
     training_data = StatDatum.where(user_id: user_id).
       where('start_time > ?', 1.month.ago).to_a
 
+    range = date.to_time.beginning_of_day.to_i...date.to_time.end_of_day.to_i
+
     test_data = []
+    range.step(1.hour) do |seconds_since_epoch|
+      test_data << PredictionDatum.new(start_time: Time.at(seconds_since_epoch),
+        user_id: user_id, prediction_id: id)
+    end
 
     predictor = RPredictor.new(training_data, test_data)
-    predictor.make_prediction
+    results = predictor.make_prediction.to_ruby
+
+    results_hash = results[0].zip(results[1]).to_h
+
+    results_hash.each do |result_time, result_value|
+      test_data.find{ |data| data.start_time == Time.zone.parse(result_time) }.
+        value = result_value
+    end
+
+    test_data.each(&:save)
   end
 end
