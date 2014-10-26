@@ -21,6 +21,12 @@ class Prediction < ActiveRecord::Base
     predictor = RPredictor.new(training_data, test_data)
     results = predictor.make_prediction
 
+    save_results(results, test_data)
+  end
+
+  private
+
+  def save_results(results, test_data)
     results.each do |result_time, result_value|
       test_data.find { |data| data.start_time == Time.zone.parse(result_time) }.
         value = result_value
