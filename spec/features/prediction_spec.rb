@@ -5,7 +5,7 @@ feature 'Predition analysis' do
   scenario 'User can create a prediction request for a user' do
     user1 = User.create(username: 'Matthew')
     user2 = User.create(username: 'Bender')
-    allow_any_instance_of(RPredictor).to receive(:make_prediction)
+    allow_any_instance_of(Prediction).to receive(:process)
 
     visit root_path
 
