@@ -42,7 +42,7 @@ EOF
   end
 
   def dates_string(data)
-    test_data.map do |datum|
+    data.map do |datum|
       "'#{datum.start_time.strftime('%Y-%m-%d %H:%M')}'"
     end.join(',')
   end
