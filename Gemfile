@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.0'
 
 gem 'pg'
 gem 'haml'
@@ -8,7 +8,7 @@ gem 'haml'
 gem 'rserve-client'
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.1.0'
+  gem 'rspec-rails', '~> 3.1'
   gem 'capybara'
   gem 'shoulda-matchers'
   gem 'codeclimate-test-reporter'
@@ -16,7 +16,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'quiet_assets', '~> 1.0.3'
+  gem 'quiet_assets', '~> 1.0'
   gem 'thin-rails'
-  gem 'pry-rails'
 end
